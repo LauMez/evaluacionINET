@@ -1,8 +1,6 @@
 import { createApp } from './app.js';
 
-import { StudentModel } from './models/gRPC/student.js';
-import { BulletinModel } from './models/gRPC/bulletin.js';
-import { CourseModel } from './models/gRPC/course.js';
-import { SubjectModel } from './models/gRPC/subject.js';
+import { AuthModel } from './models/mysql/auth.js';
+// import { AccountModel } from './models/mysql/auth.js';
 
-createApp({ studentModel: StudentModel, bulletinModel: BulletinModel, courseModel: CourseModel, subjectModel: SubjectModel });
+createApp({ authModel: AuthModel });

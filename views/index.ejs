@@ -1,53 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Probar API Rest</title>
-  <style>
-    article {
-      border: 1px solid #ccc;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    img {
-      height: auto;
-      width: 320px;
-      max-width: 100%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym</title>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FLATICON -->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="resources/css/styles.css">
 </head>
 <body>
-  <p>hola</p>
-  <main></main>
+    <div class="main-container">
 
-  <% if(students.length > 1 ) { %>
-    <% students.forEach(student => { %>
-      <article>
-        <h2><%=student.CUIL%></h2>
-        <p>Nombre: <%=student.first_name%></p>
-        <p>Segundo nombre: <%=student.second_name%></p>
-        <p>Apellido1: <%=student.last_name1%></p>
-        <p>Apellido2: <%=student.last_name2%></p>
-        <p>Numero telefono: <%=student.phone_number%></p>
-        <p>Direccion: <%=student.direction%></p>
-  
-        <button>Eliminar</button>
-      </article>
-    <% }) %>
-  <%} else {%>
-    <article>
-      <h2><%=students.CUIL%></h2>
-      <p>Nombre: <%=students.first_name%></p>
-      <p>Segundo nombre: <%=students.second_name%></p>
-      <p>Apellido1: <%=students.last_name1%></p>
-      <p>Apellido2: <%=students.last_name2%></p>
-      <p>Numero telefono: <%=students.phone_number%></p>
-      <p>Direccion: <%=students.direction%></p>
+        <header class="header" id="principle">
+            <div class="logo">
+                <img src="resources/img/logo.jpg" alt="">
+                <a href="#"><p>power<span>life</span>gym</p></a>
+            </div>
+            <button class="abrirMenu" id="abrir"><i class="bi bi-list"></i></button>
+            <nav class="nav" id="nav">
+                <button class="cerrarMenu" id="cerrar"><i class="bi bi-x"></i></button>
+                <ul class="nav-list">
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="inscribirse">Inscribirse</a></li>
+                    <li><a href="suplementos">Suplementos</a></li>
+                    <li class="line"><a href="#contacto">Contacto</a></li>
+                    <div class="nav-btns">
+                        <% if(login) { %>
+                            <a href="account" class="nav-img"><i class="bi bi-person-circle"></i></a>
+                        <% } else { %>
+                            <a href="register" class="nav-btn2">Registarse</a>
+                            <span class="line"></span>
+                            <a href="login" class="nav-btn">Iniciar sesión</a> %>
+                        <% }%>
+                    </div>
+                </ul>
+            </nav>
+        </header>
 
-      <button>Eliminar</button>
-    </article>
-  <%}%>
+        <div class="info-container">
+            <div class="info">
+                <div id="toggle" class="toggle">
+                    <i class="bi bi-moon"></i>
+                    <i class="bi bi-brightness-high"></i>
+                </div>
+                <h2 id="hola" class="info-title"><span>G</span>eneral</h2>
+                <p class="info-text">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam minima consequatur sequi vel quod non placeat nemo maxime. Voluptatem, nihil, corporis ullam eaque voluptas magnam ratione tenetur minima totam odio harum. Voluptates autem nulla cum id! Accusamus pariatur quo doloremque porro ipsam magnam rerum dolorum recusandae voluptatibus amet? Et, consequuntur?
+                    <span>.</span>
+                </p>
+            </div>
+
+            <div class="img-container">
+                <div class="slider" id="slider">
+                    <div class="slider_section">
+                        <img src="resources/img/gym1.jpg" class="slider_img">
+                    </div>
+                    <div class="slider_section">
+                        <img src="resources/img/gym2.jpg" class="slider_img">
+                    </div>
+                    <div class="slider_section">
+                        <img src="resources/img/gym3.jpg" class="slider_img">
+                    </div>
+                    <div class="slider_section">
+                        <img src="resources/img/gym4.jpg" class="slider_img">
+                    </div>
+                    <div class="slider_section">
+                        <img src="resources/img/gym5.jpg" class="slider_img">
+                    </div>
+                    <div class="slider_btn slider_btn-right" id="btn-right"></div>
+                    <!-- <div class="slider_btn slider_btn-left" id="btn-left">&#60</div>&#62 -->
+                </div>
+            </div>
+        </div>
+
+        <div id="entrenamiento" class="entreno-container">
+            <h2 class="entreno-title"><span>E</span>ntrenamiento<span>.</span></h2>
+            <div class="card-entreno-container">
+                <div class="card-entreno">
+                <div class="logo-entreno">
+                    <i id="imgchange" class="abrirBoxeo fi fi-tr-boxing-glove"></i>
+                </div>
+                <div class="text">
+                    <p><span>B</span>oxeo<span>.</span></p>
+                </div>
+                </div>
+                <div class="card-entreno">
+                <div class="logo-entreno">
+                    <i id="imgchange" class="abrirFuncional fi fi-rr-heart-rate"></i>
+                </div>
+                <div class="text">
+                    <p><span>F</span>uncional<span>.</span></p>
+                </div>
+                </div>
+                <div class="card-entreno">
+                <div class="logo-entreno">
+                    <i class="abrirPesa fi fi-rr-gym"></i>
+                </div>
+                <p class="text">
+                    <p><span>M</span>usculación<span>.</span></p>
+                </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="nosotros" class="mas-nosotros">
+            <div id="personal" class="personal-container">
+                <h2 class="personal-title"><span>P</span>ersonal<span>.</span></h2>
+                <div class="personal-sections">
+                    <div class="personal-entranadores">
+                        <div class="entrenadores-s1">
+                            <h3 class="personal-title"><span>E</span>ntrenadores<span>.</span></h3>
+                            <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, impedit. Eligendi deserunt at suscipit aliquam? Unde, omnis. Animi, excepturi dolorum!</p>
+                        </div>
+                        <div class="entrenadores-s2">
+                            <i class="abrirEntrenadores fi fi-rs-chalkboard-user"></i>
+                        </div>
+                    </div>
+                    <div class="personal-recepcion">
+                        <div class="recepcion-s1">
+                            <h3 class="personal-title"><span>R</span>ecepción<span>.</span></h3>
+                            <p class="info-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis ipsa maiores modi quod quidem aperiam quo ab beatae nihil corporis!</p>
+                        </div>
+                        <div class="recepcion-s2">
+                            <i class="abrirRecepcion fi fi-rr-concierge-bell"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="clientes" class="clientes-container">
+                <h2 class="clientes-title"><span>C</span>lientes<span>.</span></h2>
+                <div class="clientes-sections">
+                    <div class="clientes-img">
+                        <i class="abrirClientes fi fi-rr-users-alt"></i>
+                    </div>
+                    <div class="clientes-info">
+                        <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eaque voluptas dicta autem exercitationem magnam nobis repudiandae ipsam recusandae sit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ubicacion" class="ubi-container">
+            <h2 class="ubi-title"><span>U</span>bicacion<span>.</span></h2>
+            <div class="ubi__section">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.5478772701467!2d-57.56637072458051!3d-37.96434154265814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d9f8ed93ec2f%3A0x3e5b94633235315d!2sPOWER%20LIFE%20GYM!5e0!3m2!1ses!2sar!4v1689083539730!5m2!1ses!2sar" width="400" height="400" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p><i class="bi bi-geo-alt"></i> Orttega y Gasette 654 <br>Mar del Plata, Provincia de Buenos Aires</p>
+            </div>
+        </div>
+
+        <section class="modalBoxeo modal">
+            <div class="modal_container">
+                <i id="imgchange" class="modal_img fi fi-tr-boxing-glove"></i>
+                <h2 class="modal_title">Boxeo</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
+                </p>
+                <a href="#" class="cerrarBoxeo cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <section class="modalFuncional modal">
+            <div class="modal_container">
+                <i id="imgchange" class="modal_img fi fi-rr-heart-rate"></i>
+                <h2 class="modal_title">Funcional</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate libero eveniet earum atque porro voluptatibus omnis. Doloremque ipsam id ab?
+                    </p>
+                <a href="#" class="cerrarFuncional cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <section class="modalPesa modal">
+            <div class="modal_container">
+                <i class="modal_img fi fi-rr-gym"></i>
+                <h2 class="modal_title">Musculación</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores tempora doloribus quibusdam voluptas similique quae aperiam quis autem maiores sit?
+                    </p>
+                <a href="#" class="cerrarPesa cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <section class="modalEntrenadores modal">
+            <div class="modal_container">
+                <i class="fi fi-rs-chalkboard-user"></i>
+                <h2 class="modal_title">Entrenadores</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
+                </p>
+                <a href="#" class="cerrarEntrenadores cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <section class="modalRecepcion modal">
+            <div class="modal_container">
+                <i class="fi fi-rr-concierge-bell"></i>
+                <h2 class="modal_title">Recepción</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
+                </p>
+                <a href="#" class="cerrarRecepcion cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <section class="modalClientes modal">
+            <div class="modal_container">
+                <i class="fi fi-rr-users-alt"></i>
+                <h2 class="modal_title">Clientes</h2>
+                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
+                </p>
+                <a href="#" class="cerrarClientes cerrar_modal">X</a>
+            </div>
+        </section>
+
+        <a href="#principle" id="topArrow" class="top__arrow"><i class="bi bi-arrow-up-short"></i></a>
+
+        <footer class="footer">
+            <div class="containerr">
+                <div class="fila">
+                    <div class="footer-col">
+                        <h4><span>E</span>ntrenamientos</h4>
+                        <ul>
+                            <li><p><span>B</span>oxeo</p></li>
+                            <li><p><span>F</span>uncional</p></li>
+                            <li><p><span>M</span>usculación</p></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4><span>N</span>osotros</h4>
+                        <ul>
+                            <li><p><span>P</span>ersonal</p></li>
+                            <li><p><span>C</span>lientes</p></li>
+                            <li><p><span>U</span>bicación</p></li>
+                        </ul>
+                    </div>
+                    <div id="contacto" class="footer-col">
+                        <h4><span>C</span>ontactos</h4>
+                        <ul class="redes">
+                            <a target="_blank" href="https://www.instagram.com/powerlifemdp/?hl=es"><i class="fi fi-brands-instagram"></i></a>
+                            <a href="#"><i class="fi fi-brands-whatsapp"></i></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="resources/scripts/navbar.js"></script>
+    <script src="resources/scripts/slider.js"></script>
+    <script src="resources/scripts/toggle.js"></script>
+    <script src="resources/scripts/topArrow.js"></script>
+    <script src="resources/scripts/modalBoxeo.js"></script>
+    <script src="resources/scripts/modalFuncional.js"></script>
+    <script src="resources/scripts/modalPesa.js"></script>
+    <script src="resources/scripts/modalEntrenadores.js"></script>
+    <script src="resources/scripts/modalRecepcion.js"></script>
+    <script src="resources/scripts/modalClientes.js"></script>
 </body>
 </html>

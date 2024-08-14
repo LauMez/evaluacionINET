@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: black;
+    --grey: rgb(36, 36, 36);
+    --light-gray:rgb(61, 61, 61);
+    --red: red;
+    --light-red: rgb(252, 30, 30);
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+}
+
+body {
+    background-color: var(--black);
+    font-size: 15px;
+}
+
+body.active {
+    background-color: rgb(202, 202, 202);
+}
+body.active * {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body.active p, body.active h2, body.active h3 {
+    color: var(--black);
+}
+body.active .modal_container {
+    background-color: rgb(202, 202, 202);
+}
+body.active .modal_container i {
+    background-color: rgb(202, 202, 202);
+}
+body.active header {
+    background-color: rgb(155, 155, 155);
+}
+body.active header .nav-list li a {
+    color: var(--black);
+}
+body.active header .nav-list li a:hover {
+    color: var(--red);
+}
+body.active header .nav-btn {
+    color: var(--black);
+    border-color: var(--red);
+    background-color: rgb(155, 155, 155);
+}
+body.active header .nav-btn2 {
+    color: white;
+    border-color: var(--red);
+    background-color: var(--red);
+}
+body.active header .nav-btn2:hover {
+    color: var(--black);
+    border-color: var(--red);
+    background-color: rgb(155, 155, 155);
+}
+body.active .nav-visible {
+    background-color: rgb(155, 155, 155);
+}
+body.active .toggle i {
+    color: var(--red);
+}
+body.active .toggle:hover {
+    background-color: var(--black);
+}
+body.active .logo-entreno i {
+    background-color: rgb(202, 202, 202);
+}
+body.active .entrenadores-s2 i, body.active .recepcion-s2 i, body.active .clientes-img i {
+    background-color: rgb(202, 202, 202);
+}
+body.active .ubi-container iframe {
+    border: 1px solid var(--black);
+}
+body.active footer {
+    background-color: rgb(155, 155, 155);
+}
+body.active footer h4, body.active .footer-col ul li p {
+    color: var(--black);
+}
+body.active .redes a {
+    padding-top: 15px;
+    background-color: rgb(202, 202, 202);
+}
+body.active .redes a:hover {
+    background-color: var(--red);
+    color: var(--black);
+}
+
+.mb2 {
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 15px;
+    color: var(--red);
+}
+
+.main__container {
+    width: 100%;
+    height: 620px;
+    display: flex;
+    align-items: center;
+}
+
+.login__container {
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: var(--grey);
+    border-radius: 7px;
+    display: inline-block;
+    text-align: center;
+}
+
+.login__volver {
+    text-align:left;
+    margin-left: 10px;
+}
+.login__volver a {
+    color: red;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+.login__volver a:hover {
+    margin-left: 5px;
+    transition: all .3s ease;
+}
+.login__volver i {
+    font-size: 27px;
+}
+
+.login__ss {
+    display: inline-block;
+    text-align: center;
+}
+.login__ss-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.login__ss-title {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.login__ss-title span {
+    font-size: 26px;
+}
+.login__ss-text {
+    color: white;
+    font-size: 15px;
+}
+
+.login__info {
+    display: inline-block;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.login__info input {
+    padding: 12px;
+    width: 280px;
+    border-radius: 7px;
+    background-color: var(--grey);
+    border: 1px solid var(--light-gray);
+}
+
+.login__btn {
+    display: inline-block;
+    text-align: center;
+    width: 90%;
+}
+.login__btn-btn {
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 18px;
+    width: 100%;
+    border: none;
+    color: var(--black);
+    background-color: var(--red);
+    transition: all .3s ease;
+}
+.login__btn-btn:hover {
+    cursor: pointer;
+    background-color: var(--light-red);
+    transition: all .3s ease;
+}
+.login__btn-register {
+    margin-top: 15px;
+    color: white;
+}
+.login__btn-register a {
+    color: var(--red);
+    text-decoration: none;
+    transition: all .3s ease;
+}
+.login__btn-register a:hover {
+    color: var(--light-red);
+    transition: all .3s ease;
+}

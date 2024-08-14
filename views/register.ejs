@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="resources/css/register.css">
+</head>
+<body>
+    <div class="main__container">
+        <form action="/register" method="POST" class="register__container">
+            <div class="register__volver">
+                <a href="/"><i class="bi bi-arrow-left"></i></a>
+            </div>
+            <div class="register__ss">
+                <img src="resources/img/logo.jpg" class="register__ss-img">
+                <p class="register__ss-title"><span>¡B</span>ienvenido<span>!</span></p>
+                <p class="register__ss-text"><span>I</span>ngresa tus credenciales para crear tu cuenta<span>.</span></p>
+            </div>
+            <div id="info" class="register__info">
+                <input type="text" class="mb2" name="firstname" placeholder="Nombres"> <br>
+                <input type="text" class="mb2" name="lastname" placeholder="Apellidos"> <br>
+                <input type="text" class="mb2" name="dni" placeholder="Dni"> <br>
+                <input type="email" class="mb2" name="email" placeholder="Correo"> <br>
+                <input type="password" name="password" placeholder="Contraseña"> 
+            </div>
+
+            <br> 
+            <div class="register__btn">
+                <input id="register" type="submit" class="register__btn-btn reg" value="Registrarse">
+                <p class="register__btn-register"><span>¿Y</span>a tenes tenés una cuenta<span>?</span><a href="login"> Inicia sesión aquí</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const next = document.getElementById('next');
+        const info = document.getElementById('info');
+        const pInfo = document.getElementById('personal_info');
+        const volver = document.getElementById('volver');
+        const register = document.getElementById('register');
+
+        next.addEventListener('click', () => {
+            info.style.display = "none"
+            next.style.display = "none"
+            pInfo.style.display = "inherit"
+            volver.style.display = "inherit"
+            register.style.display = "inherit"
+        })
+        volver.addEventListener('click', () => {
+            pInfo.style.display = "none"
+            volver.style.display = "none"
+            info.style.display = "inherit"
+            next.style.display = "inherit"
+            register.style.display = "none"
+        })
+    </script>
+
+    <% if(typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: false,
+                timer: 1500
+           }).then(()=> {
+                window.location='/<%= ruta %>'
+           })
+        </script>
+    <% } %>
+</body>
+</html>
