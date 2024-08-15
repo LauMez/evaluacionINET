@@ -4,9 +4,9 @@ import { AccountController } from '../controllers/account.js'
 export const createAccountRouter = ({ accountModel }) => {
   const accountRouter = Router()
 
-  const accountController = new accountController({ accountModel });
+  const accountController = new AccountController({ accountModel });
 
-  accountRouter.get('/', accountController.account);
+  accountRouter.get('', accountController.account);
 
   accountRouter.get('/crear', accountController.getCreate);
   accountRouter.post('/crear', accountController.create);

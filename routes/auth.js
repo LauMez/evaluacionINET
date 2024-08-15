@@ -9,7 +9,7 @@ export const createAuthRouter = ({ authModel }) => {
   authRouter.get('', authController.index);
 
   authRouter.get('/login', authController.logedIn);
-  authRouter.post('login', authController.logIn);
+  authRouter.post('/login', authController.logIn);
 
   authRouter.get('/register', authController.registered);
   authRouter.post('/register', authController.register);

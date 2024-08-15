@@ -38,7 +38,7 @@
                     <li class="line"><a href="#contacto">Contacto</a></li>
                     <div class="nav-btns">
                         <% if(login) { %>
-                            <a href="account" class="nav-img"><i class="bi bi-person-circle"></i></a>
+                            <a href="cuenta" class="nav-img"><i class="bi bi-person-circle"></i></a>
                         <% } else { %>
                             <a href="register" class="nav-btn2">Registarse</a>
                             <span class="line"></span>
@@ -49,180 +49,26 @@
             </nav>
         </header>
 
-        <div class="info-container">
-            <div class="info">
-                <div id="toggle" class="toggle">
-                    <i class="bi bi-moon"></i>
-                    <i class="bi bi-brightness-high"></i>
+        <div class="cards__section">
+            <% products.forEach((product) => { %>
+            <div class="card">
+                <div class="info__section">
+                    <img src="" class="info__img">
+                    <div class="info">
+                        <h3 class="info__title"><%= product.name %></h3>
+                        <p class="info-info">Lorem ipsum dolor sit amet.</p>
+                        <p class="price"><span>$</span><%= product.price %></p>
+                    </div>
                 </div>
-                <h2 id="hola" class="info-title"><span>G</span>eneral</h2>
-                <p class="info-text">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam minima consequatur sequi vel quod non placeat nemo maxime. Voluptatem, nihil, corporis ullam eaque voluptas magnam ratione tenetur minima totam odio harum. Voluptates autem nulla cum id! Accusamus pariatur quo doloremque porro ipsam magnam rerum dolorum recusandae voluptatibus amet? Et, consequuntur?
-                    <span>.</span>
-                </p>
-            </div>
-
-            <div class="img-container">
-                <div class="slider" id="slider">
-                    <div class="slider_section">
-                        <img src="resources/img/gym1.jpg" class="slider_img">
-                    </div>
-                    <div class="slider_section">
-                        <img src="resources/img/gym2.jpg" class="slider_img">
-                    </div>
-                    <div class="slider_section">
-                        <img src="resources/img/gym3.jpg" class="slider_img">
-                    </div>
-                    <div class="slider_section">
-                        <img src="resources/img/gym4.jpg" class="slider_img">
-                    </div>
-                    <div class="slider_section">
-                        <img src="resources/img/gym5.jpg" class="slider_img">
-                    </div>
-                    <div class="slider_btn slider_btn-right" id="btn-right"></div>
-                    <!-- <div class="slider_btn slider_btn-left" id="btn-left">&#60</div>&#62 -->
+                <div class="interaction__section">
+                    <a href="producto/<%=product.productID%>/detalles" class="btn see__btn"><p><i class="bi bi-eye"></i> Ver producto</p></a>
+                    <a href="javascript:void(0);" class="btn see__btn" onclick="addToCart('<%= product.productID %>')">
+                        <p><i class="bi bi-cart"></i> Agregar al carrito</p>
+                      </a>
                 </div>
             </div>
+            <% }); %>
         </div>
-
-        <div id="entrenamiento" class="entreno-container">
-            <h2 class="entreno-title"><span>E</span>ntrenamiento<span>.</span></h2>
-            <div class="card-entreno-container">
-                <div class="card-entreno">
-                <div class="logo-entreno">
-                    <i id="imgchange" class="abrirBoxeo fi fi-tr-boxing-glove"></i>
-                </div>
-                <div class="text">
-                    <p><span>B</span>oxeo<span>.</span></p>
-                </div>
-                </div>
-                <div class="card-entreno">
-                <div class="logo-entreno">
-                    <i id="imgchange" class="abrirFuncional fi fi-rr-heart-rate"></i>
-                </div>
-                <div class="text">
-                    <p><span>F</span>uncional<span>.</span></p>
-                </div>
-                </div>
-                <div class="card-entreno">
-                <div class="logo-entreno">
-                    <i class="abrirPesa fi fi-rr-gym"></i>
-                </div>
-                <p class="text">
-                    <p><span>M</span>usculación<span>.</span></p>
-                </p>
-                </div>
-            </div>
-        </div>
-
-        <div id="nosotros" class="mas-nosotros">
-            <div id="personal" class="personal-container">
-                <h2 class="personal-title"><span>P</span>ersonal<span>.</span></h2>
-                <div class="personal-sections">
-                    <div class="personal-entranadores">
-                        <div class="entrenadores-s1">
-                            <h3 class="personal-title"><span>E</span>ntrenadores<span>.</span></h3>
-                            <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, impedit. Eligendi deserunt at suscipit aliquam? Unde, omnis. Animi, excepturi dolorum!</p>
-                        </div>
-                        <div class="entrenadores-s2">
-                            <i class="abrirEntrenadores fi fi-rs-chalkboard-user"></i>
-                        </div>
-                    </div>
-                    <div class="personal-recepcion">
-                        <div class="recepcion-s1">
-                            <h3 class="personal-title"><span>R</span>ecepción<span>.</span></h3>
-                            <p class="info-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis ipsa maiores modi quod quidem aperiam quo ab beatae nihil corporis!</p>
-                        </div>
-                        <div class="recepcion-s2">
-                            <i class="abrirRecepcion fi fi-rr-concierge-bell"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div id="clientes" class="clientes-container">
-                <h2 class="clientes-title"><span>C</span>lientes<span>.</span></h2>
-                <div class="clientes-sections">
-                    <div class="clientes-img">
-                        <i class="abrirClientes fi fi-rr-users-alt"></i>
-                    </div>
-                    <div class="clientes-info">
-                        <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eaque voluptas dicta autem exercitationem magnam nobis repudiandae ipsam recusandae sit.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="ubicacion" class="ubi-container">
-            <h2 class="ubi-title"><span>U</span>bicacion<span>.</span></h2>
-            <div class="ubi__section">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.5478772701467!2d-57.56637072458051!3d-37.96434154265814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d9f8ed93ec2f%3A0x3e5b94633235315d!2sPOWER%20LIFE%20GYM!5e0!3m2!1ses!2sar!4v1689083539730!5m2!1ses!2sar" width="400" height="400" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <p><i class="bi bi-geo-alt"></i> Orttega y Gasette 654 <br>Mar del Plata, Provincia de Buenos Aires</p>
-            </div>
-        </div>
-
-        <section class="modalBoxeo modal">
-            <div class="modal_container">
-                <i id="imgchange" class="modal_img fi fi-tr-boxing-glove"></i>
-                <h2 class="modal_title">Boxeo</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
-                </p>
-                <a href="#" class="cerrarBoxeo cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <section class="modalFuncional modal">
-            <div class="modal_container">
-                <i id="imgchange" class="modal_img fi fi-rr-heart-rate"></i>
-                <h2 class="modal_title">Funcional</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate libero eveniet earum atque porro voluptatibus omnis. Doloremque ipsam id ab?
-                    </p>
-                <a href="#" class="cerrarFuncional cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <section class="modalPesa modal">
-            <div class="modal_container">
-                <i class="modal_img fi fi-rr-gym"></i>
-                <h2 class="modal_title">Musculación</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores tempora doloribus quibusdam voluptas similique quae aperiam quis autem maiores sit?
-                    </p>
-                <a href="#" class="cerrarPesa cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <section class="modalEntrenadores modal">
-            <div class="modal_container">
-                <i class="fi fi-rs-chalkboard-user"></i>
-                <h2 class="modal_title">Entrenadores</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
-                </p>
-                <a href="#" class="cerrarEntrenadores cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <section class="modalRecepcion modal">
-            <div class="modal_container">
-                <i class="fi fi-rr-concierge-bell"></i>
-                <h2 class="modal_title">Recepción</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
-                </p>
-                <a href="#" class="cerrarRecepcion cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <section class="modalClientes modal">
-            <div class="modal_container">
-                <i class="fi fi-rr-users-alt"></i>
-                <h2 class="modal_title">Clientes</h2>
-                <p class="modal_texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt modi voluptates quibusdam quas reprehenderit sequi exercitationem eveniet eaque aspernatur?
-                </p>
-                <a href="#" class="cerrarClientes cerrar_modal">X</a>
-            </div>
-        </section>
-
-        <a href="#principle" id="topArrow" class="top__arrow"><i class="bi bi-arrow-up-short"></i></a>
 
         <footer class="footer">
             <div class="containerr">
@@ -256,15 +102,37 @@
 
     </div>
 
-    <script src="resources/scripts/navbar.js"></script>
-    <script src="resources/scripts/slider.js"></script>
-    <script src="resources/scripts/toggle.js"></script>
-    <script src="resources/scripts/topArrow.js"></script>
-    <script src="resources/scripts/modalBoxeo.js"></script>
-    <script src="resources/scripts/modalFuncional.js"></script>
-    <script src="resources/scripts/modalPesa.js"></script>
-    <script src="resources/scripts/modalEntrenadores.js"></script>
-    <script src="resources/scripts/modalRecepcion.js"></script>
-    <script src="resources/scripts/modalClientes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function addToCart(productID) {
+          fetch('/carrito/agregar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productID: productID })
+          })
+          .then(response => response.json())
+          .then(data => {
+            Swal.fire({
+              title: 'Producto agregado',
+              text: 'El producto se ha agregado al carrito exitosamente.',
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            });
+          })
+          .catch(error => {
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un problema al agregar el producto al carrito.',
+              icon: 'error',
+              timer: 1500,
+              showConfirmButton: false
+            });
+          });
+        }
+      </script>
 </body>
 </html>

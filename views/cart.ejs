@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/resources/css/cart.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="cart-title"><span>C</span>arrito de Compras</h1>
+        <a class="arrow" href="/account"><i class="bi bi-arrow-left"></i></a>
+        <div class="cart-table-container">
+            <table class="cart-table">
+                <thead>
+                    <th><span>P</span>roducto</th>
+                    <th><span>P</span>recio</th>
+                    <th><span>C</span>antidad</th>
+                    <th><span>S</span>ubtotal</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <%  let total = 0;
+                        for (let product of products) {
+                        const discountPrice = item.price - ((item.price*item.discount)/100);
+                        const amount = discountPrice * item.quantity ;
+                        total = total + amount; %>
+                        <tr>
+                            <td class="Ttd"><%= item.name %></td>
+                            <td class="Ttd"> <span>$</span><%=discountPrice %></td>
+                            <td class="Ttd"><input type="number" min="1" max="50" step="1" value="<%= item.quantity %>" size="5" onchange='UpdateQuantity(this)' data-cart-id="<%= item.cart_id %>"></td>
+                            <td class="Ttd"><span>$</span><%= amount %></td>
+                            <td class="Ttd Ttd-delete"><a onclick="openDeleteModal('<%= item.cart_id %>')">Eliminar</a></td>
+                        </tr>
+                    <%}%>
+                        <tr class="tr2">
+                                <td colspan="3"></td>
+                                <td id="total-cell" colspan="2">
+                                    <h3> <span>$</span><%=total%></h3>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cart-btn-container">
+            <a href="/account/cart/payment"><button class="cart-btn">Realizar pago</button></a>
+        </div>
+
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <p><span>¿E</span>stás seguro de que quieres eliminar este producto del carrito<span>?</span></p>
+                <button onclick="deleteCartItem()">Sí</button>
+                <button onclick="closeDeleteModal()">No</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function actualization(cartItems) {
+            // const cartItems = JSON.stringify(cartItems);
+            let total = 0;
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            for (const item of cartItems) {
+                const discountPrice = item.price - ((item.price * item.discount) / 100);
+                const amount = discountPrice * item.quantity;
+                total += amount;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${discountPrice}</td>
+                    <td><input type="number" min="1" max="50" step="1" value="${item.quantity}" size="5" onchange="UpdateQuantity(${item.cart_id}, this.value)"></td>
+                    <td>${amount}</td>
+                    <td><a href="deleteProduct${item.cart_id}">Eliminar</a></td>
+                `;
+
+                tbody.appendChild(row);
+            }
+
+            const totalCell = document.querySelector('#total-cell');
+            totalCell.innerHTML = `<h3>$${total}</h3>`;
+        }
+
+        function UpdateQuantity(inputElement) {
+            const cartId = inputElement.getAttribute('data-cart-id');
+            const newQuantity = inputElement.value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/updateQuantity/${cartId}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const updatedCartItems = JSON.parse(xhr.responseText);
+                    actualization(updatedCartItems); 
+                }
+                else {
+                    console.log('error paa');
+                }
+            };
+
+            xhr.send(JSON.stringify({ newQuantity }));
+            window.location.reload();
+        }
+
+        //------------------------------modal---------------------------------
+
+        function openDeleteModal(cartId) {
+            console.log(cartId);
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'block';
+            window.cartIdToDelete = cartId;
+        }
+
+        function closeDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.style.display = 'none';
+        }
+
+        function deleteCartItem() {
+            const cartId = window.cartIdToDelete;
+            const xhr = new XMLHttpRequest();
+            xhr.open('DELETE', `/deleteProduct/${cartId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const updatedCartItems = JSON.parse(xhr.responseText);
+                        actualization(updatedCartItems);
+                    } else {
+                        console.error('Error al eliminar el producto');
+                    }
+                }
+            };
+
+            xhr.send();
+            closeDeleteModal();
+            window.location.reload();
+        }
+    </script>
+</body>
+
+</html>

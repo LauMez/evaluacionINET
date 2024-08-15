@@ -3,15 +3,17 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 
 import { createAuthRouter } from './routes/auth.js';
-// import { createAccountRouter } from './routes/account.js';
+import { createAccountRouter } from './routes/account.js';
+import { createProductRouter } from './routes/product.js';
+import { createCartRouter } from './routes/cart.js';
+
 import { corsMiddleware } from './middlewares/cors.js';
 import 'dotenv/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import axios from 'axios';
 
 // después
-export const createApp = ({ authModel }) => {
+export const createApp = ({ authModel, accountModel, productModel, cartModel }) => {
   const app = express();
   app.use(json());
   app.use(corsMiddleware());
@@ -36,7 +38,9 @@ export const createApp = ({ authModel }) => {
   app.set('view engine', 'ejs');
 
   app.use('/', createAuthRouter({ authModel }));
-  // app.use('cuenta', createAccountRouter({ accountModel }));
+  app.use('/cuenta', createAccountRouter({ accountModel }));
+  app.use('/producto', createProductRouter({ productModel }));
+  app.use('/carrito', createCartRouter({ cartModel }));
 
   const PORT = process.env.PORT ?? 1234;
 

@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import mysql from 'mysql2';
 
 const DEFAULT_CONFIG = {
   host: 'localhost',

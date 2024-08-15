@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: black;
+    --grey: rgb(36, 36, 36);
+    --light-gray:rgb(61, 61, 61);
+    --red: red;
+    --light-red: rgb(252, 30, 30);
+    --font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+body {
+    background-color: var(--black);
+    font-size: 15px;
+    height: 650px;
+    font-family: var(--font-family);
+}
+
+.mb2 {
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 15px;
+    color: var(--red);
+}
+
+.main__container {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.login__container {
+    width: 500px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: var(--grey);
+    border-radius: 7px;
+    display: inline-block;
+    text-align: center;
+}
+
+.login__volver {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.login__volver .a1, .a2 {
+    color: red;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+.login__volver .a1:hover {
+    margin-left: 5px;
+    transition: all .3s ease;
+}
+.login__volver .a2:hover {
+    margin-right: 5px;
+    transition: all .3s ease;
+}
+.login__volver i {
+    font-size: 27px;
+}
+
+.login__ss {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+}
+.login__ss i {
+    font-size: 150px;
+    color: var(--red);
+}
+.login__ss-title {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.login__ss-title span {
+    font-size: 26px;
+}
+
+.login__info {
+    display: inline-block;
+    text-align: center;
+    margin-top: 25px;
+    width: 70%;
+    margin-bottom: 45px;
+}
+.login__info-section {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--light-gray);
+    border-radius: 7px;
+    padding: 15px;
+}
+.login__info-section i {
+    font-size: 40px;
+    color: var(--red);
+    transition: all .3s ease;
+    margin-right: 5px;
+}
+.login__info-section p {
+    color: white;
+}
+.login__info-section i:hover {
+    cursor: pointer;
+    color: var(--light-red);
+    margin-right: 10px;
+    transition: all .3s ease;
+}

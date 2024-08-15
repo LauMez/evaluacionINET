@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { validateLogin, validateRegister } from "../schemas/auth.js";
+import axios from 'axios';
 
 export class AuthController {
     constructor ({ authModel }) {
@@ -7,8 +8,13 @@ export class AuthController {
     };
 
     index = async(req, res) => {
+        const response = await axios.get('http://localhost:1234/producto/todos');
+        const products = response.data;
+
+        console.log(products);
         return res.render('index', {
             login: req.session.loggedin || false,
+            products
         });
     };
 
@@ -19,7 +25,7 @@ export class AuthController {
     logIn = async(req, res) => {
         const { email, password } = req.body;
 
-        if(!validateLogin(email, password)) {
+        if(!validateLogin({email, password})) {
             return res.render('login', {
                 alert: true,
                 alertTitle: "Advertencia",
@@ -34,7 +40,7 @@ export class AuthController {
         try {
             const login = await this.authModel.login({ email });
 
-            if (login.length === 0 || !(await bcryptjs.compare(password, login[0].password))) {
+            if (login.length === 0 || !(await bcryptjs.compare(password, login.password))) {
                 return res.render('login', {
                     alert: true,
                     alertTitle: "Error",
@@ -45,15 +51,14 @@ export class AuthController {
                     ruta: 'login'
                 });
             }
-
-            const user = login[0];
+            
             req.session.loggedin = true;
             req.session.user = {
-                id: user.id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                dni: user.dni,
-                email: user.email
+                id: login.userID,
+                firstname: login.firstname,
+                lastname: login.lastname,
+                dni: login.dni,
+                email: login.email
             };
 
             return res.render('login', {
@@ -66,18 +71,18 @@ export class AuthController {
                 ruta: ''
             });
         } catch (error) {
-            if (error instanceof z.ZodError) {
-                const errorMessage = error.errors.map(e => e.message).join(', ');
-                return res.render('login', {
-                    alert: true,
-                    alertTitle: "Error de validación",
-                    alertMessage: errorMessage,
-                    alertIcon: 'warning',
-                    showConfirmButton: true,
-                    timer: false,
-                    ruta: 'login'
-                });
-            }
+            // if (error instanceof z.ZodError) {
+            //     const errorMessage = error.errors.map(e => e.message).join(', ');
+            //     return res.render('login', {
+            //         alert: true,
+            //         alertTitle: "Error de validación",
+            //         alertMessage: errorMessage,
+            //         alertIcon: 'warning',
+            //         showConfirmButton: true,
+            //         timer: false,
+            //         ruta: 'login'
+            //     });
+            // }
     
             console.error(error);
             return res.status(500).send('Internal Server Error');
@@ -90,7 +95,6 @@ export class AuthController {
 
     register = async(req, res) => {
         const { firstname, lastname, dni, email, password } = req.body;
-        console.log(firstname, lastname, dni, email, password);
 
         if(!validateRegister({firstname, lastname, dni, email, password})) {
             return res.render('register', {
@@ -118,20 +122,20 @@ export class AuthController {
                 ruta: ''
             })
         } catch(error) {
-            // if (error instanceof z.ZodError) {
-            //     const errorMessage = error.errors.map(e => e.message).join(', ');
-            //     return res.render('login', {
-            //         alert: true,
-            //         alertTitle: "Error de validación",
-            //         alertMessage: errorMessage,
-            //         alertIcon: 'warning',
-            //         showConfirmButton: true,
-            //         timer: false,
-            //         ruta: 'login'
-            //     });
-            // }
+            if (error instanceof z.ZodError) {
+                const errorMessage = error.errors.map(e => e.message).join(', ');
+                return res.render('login', {
+                    alert: true,
+                    alertTitle: "Error de validación",
+                    alertMessage: errorMessage,
+                    alertIcon: 'warning',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'login'
+                });
+            }
     
-            console.error(error);
+            console.error('error');
             return res.status(500).send('Internal Server Error');
         };
     };
