@@ -6,6 +6,7 @@ import { createAuthRouter } from './routes/auth.js';
 import { createAccountRouter } from './routes/account.js';
 import { createProductRouter } from './routes/product.js';
 import { createCartRouter } from './routes/cart.js';
+import { createPaymentRouter } from './routes/payment.js';
 
 import { corsMiddleware } from './middlewares/cors.js';
 import 'dotenv/config';
@@ -13,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // después
-export const createApp = ({ authModel, accountModel, productModel, cartModel }) => {
+export const createApp = ({ authModel, accountModel, productModel, cartModel, paymentModel }) => {
   const app = express();
   app.use(json());
   app.use(corsMiddleware());
@@ -41,6 +42,7 @@ export const createApp = ({ authModel, accountModel, productModel, cartModel }) 
   app.use('/cuenta', createAccountRouter({ accountModel }));
   app.use('/producto', createProductRouter({ productModel }));
   app.use('/carrito', createCartRouter({ cartModel }));
+  app.use('/pago', createPaymentRouter({ paymentModel }));
 
   const PORT = process.env.PORT ?? 1234;
 

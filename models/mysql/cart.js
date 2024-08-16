@@ -10,8 +10,6 @@ export class CartModel {
             return [];
         }
 
-        
-
         const cartID = cart.cartID.toString('hex');
 
         const [selectedProducts] = await db.promise().execute(`SELECT * FROM Selected_Product WHERE cartID = UUID_TO_BIN("${cartID}");`);

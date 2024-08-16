@@ -1,11 +1,11 @@
 import mysql from 'mysql2';
 
 const DEFAULT_CONFIG = {
-  host: 'bvujrglb0mttpgu3xvcd-mysql.services.clever-cloud.com',
-  user: 'uzvvr21jvwb1em53',
+  host: 'localhost',
+  user: 'root',
   port: 3306,
-  password: 'CBr2skYnSbsBlQJFaspQ',
-  database: 'bvujrglb0mttpgu3xvcd'
+  password: '',
+  database: 'dbventas'
 };
 
 const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;

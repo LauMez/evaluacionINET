@@ -38,9 +38,9 @@ export class ProductController {
       const { name, description, price, quantity } = req.body;
       console.log(req.body);
 
-      if(!validateProduct({name, description, price, quantity})) {
-        console.log('error validation');
-      }
+      // if(!validateProduct({name, description, price, quantity})) {
+      //   console.log('error validation');
+      // }
 
       const createdProduct = await this.productModel.create({ name, description, price, quantity });
       console.log(createdProduct);

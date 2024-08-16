@@ -87,7 +87,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '<%= total%>'
+                            value: '<%= totalPrice %>'
                         }
                     }]
                 });
@@ -99,7 +99,7 @@
                     const purchaseDate = UpdateTime(detalles.update_time);
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/paypal/confirmar', true);
+                    xhr.open('POST', '/pago/paypal/confirmar', true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
 
                     console.log(detalles);
@@ -110,8 +110,10 @@
                         status: detalles.status,
                         date: UpdateTime(detalles.update_time),
                         email: detalles.payer.email_address,
-                        idCliente: detalles.payer.payer_id
+                        clientID: detalles.payer.payer_id
                     };
+
+                    console.log(payload);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4) {
@@ -126,8 +128,8 @@
                 });
             },
             onCancel: function(data) {
-                alert("Cancelado");
-                console.log(data);
+                console.log("Cancelado");
+                // console.log(data);
             } 
         }).render('#paypal-button-container');
     </script>

@@ -73,7 +73,8 @@ CREATE TABLE Buyer_Information (
 CREATE TABLE Purchased_Product (
   purchased_productID BINARY(16) PRIMARY KEY,
   orderID BINARY(16) NOT NULL,
-  productID BINARY(16) NOT NULL
+  productID BINARY(16) NOT NULL,
+  quantity INT NOT NULL
 );
 
 CREATE TABLE Payment (
