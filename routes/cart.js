@@ -15,6 +15,8 @@ export const createCartRouter = ({ cartModel }) => {
   cartRouter.post('/agregar/:productID/detalles', cartController.addProductInDetails);
 
   cartRouter.post('/actualizarCantidad/:productID', cartController.updateQuantity);
+  
+  // cartRouter
 
   cartRouter.delete('/eliminar/:productID', cartController.deleteProduct);
 

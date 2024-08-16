@@ -4,6 +4,7 @@
     <title>Carrito de Compras</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/resources/css/cart.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AU6S-Hdz7cVH1csW4rHciCeUxTn-ipG_NSjY7pUv8cXcOYSPox7c9OriST4UuCe40hMJtKqDny9mp7Bi"></script>
 </head>
 <body>
     <div class="main-container">
@@ -51,6 +52,85 @@
             </div>
         </div>
     </div>
+
+    <div class="secundary-container">
+        <div class="paypalButtons" id="paypal-button-container"></div>
+    </div>
+
+    <script>
+        function UpdateTime(purchaseDate) {
+            const date = new Date(purchaseDate);
+
+            // Define funciones para agregar ceros a la izquierda si el valor es menor a 10
+            const addLeadingZero = (value) => (value < 10 ? `0${value}` : value);
+
+            const day = addLeadingZero(date.getDate());
+            const month = addLeadingZero(date.getMonth() + 1); // Meses comienzan desde 0
+            const year = date.getFullYear();
+            const hours = addLeadingZero(date.getHours());
+            const minutes = addLeadingZero(date.getMinutes());
+            const seconds = addLeadingZero(date.getSeconds());
+
+            // Formatea la fecha en el formato deseado
+            const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+            return formattedDate;
+        }
+
+        paypal.Buttons({
+            style:{
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '<%= total%>'
+                        }
+                    }]
+                });
+            },
+
+            onApprove: function(data, actions) {
+                actions.order.capture().then(function(detalles){
+
+                    const purchaseDate = UpdateTime(detalles.update_time);
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/paypal/confirm', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+
+                    console.log(detalles);
+
+                    const payload = {
+                        id: detalles.id,
+                        purchaseAmount: detalles.purchase_units[0].amount.value,
+                        status: detalles.status,
+                        date: UpdateTime(detalles.update_time),
+                        email: detalles.payer.email_address,
+                        idCliente: detalles.payer.payer_id
+                    };
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                console.log('Compra confirmada por el servidor');
+                            } else {
+                                console.error('Error al confirmar la compra');
+                            }
+                        }
+                    };
+                    xhr.send(JSON.stringify(payload));
+                });
+            },
+            onCancel: function(data) {
+                alert("Cancelado");
+                console.log(data);
+            } 
+        }).render('#paypal-button-container');
+    </script>
 
 
     <script>

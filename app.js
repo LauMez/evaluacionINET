@@ -42,7 +42,7 @@ export const createApp = ({ authModel, accountModel, productModel, cartModel }) 
   app.use('/producto', createProductRouter({ productModel }));
   app.use('/carrito', createCartRouter({ cartModel }));
 
-  const PORT = process.env.PORT ?? 1234;
+  const PORT = process.env.PORT ?? 3306;
 
   app.listen(PORT, () => {
     console.log(`server listening on port http://localhost:${PORT}`);
