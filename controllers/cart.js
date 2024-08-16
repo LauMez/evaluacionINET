@@ -62,4 +62,8 @@ export class CartController {
 
         return res.json(productDeleted);
     };
+
+    paypalConfirm = async(req, res) => {
+        const paypalConfirm = await this.cartModel.paypalConfirm();
+    };
 };

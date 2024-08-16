@@ -16,8 +16,6 @@ export const createCartRouter = ({ cartModel }) => {
 
   cartRouter.post('/actualizarCantidad/:productID', cartController.updateQuantity);
   
-  // cartRouter
-
   cartRouter.delete('/eliminar/:productID', cartController.deleteProduct);
 
   return cartRouter;
