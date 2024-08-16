@@ -8,7 +8,7 @@
 <body>
     <div class="main-container">
         <h1 class="cart-title"><span>C</span>arrito de Compras</h1>
-        <a class="arrow" href="/account"><i class="bi bi-arrow-left"></i></a>
+        <a class="arrow" href="/"><i class="bi bi-arrow-left"></i></a>
         <div class="cart-table-container">
             <table class="cart-table">
                 <thead>
@@ -20,22 +20,20 @@
                 </thead>
                 <tbody>
                     <%  let total = 0;
-                        for (let product of products) {
-                        const discountPrice = item.price - ((item.price*item.discount)/100);
-                        const amount = discountPrice * item.quantity ;
-                        total = total + amount; %>
+                        for (let product of cart.products) {
+                        totalPrice = product.price * product.quantity; %>
                         <tr>
-                            <td class="Ttd"><%= item.name %></td>
-                            <td class="Ttd"> <span>$</span><%=discountPrice %></td>
-                            <td class="Ttd"><input type="number" min="1" max="50" step="1" value="<%= item.quantity %>" size="5" onchange='UpdateQuantity(this)' data-cart-id="<%= item.cart_id %>"></td>
-                            <td class="Ttd"><span>$</span><%= amount %></td>
-                            <td class="Ttd Ttd-delete"><a onclick="openDeleteModal('<%= item.cart_id %>')">Eliminar</a></td>
+                            <td class="Ttd"><%= product.name %></td>
+                            <td class="Ttd"> <span>$</span><%=product.price %></td>
+                            <td class="Ttd"><input type="number" min="1" max="50" step="1" value="<%= product.quantity %>" size="5" onchange='UpdateQuantity(this)' data-cart-product="<%= product.productID %>"></td>
+                            <td class="Ttd"><span>$</span><%= product.quantity %></td>
+                            <td class="Ttd Ttd-delete"><a onclick="deleteCartItem('<%= product.cartID %>')">Eliminar</a></td>
                         </tr>
                     <%}%>
                         <tr class="tr2">
                                 <td colspan="3"></td>
                                 <td id="total-cell" colspan="2">
-                                    <h3> <span>$</span><%=total%></h3>
+                                    <h3> <span>$</span><%=totalPrice%></h3>
                                 </td>
                         </tr>
                 </tbody>
@@ -48,7 +46,7 @@
         <div id="deleteModal" class="modal">
             <div class="modal-content">
                 <p><span>¿E</span>stás seguro de que quieres eliminar este producto del carrito<span>?</span></p>
-                <button onclick="deleteCartItem()">Sí</button>
+                <button>Sí</button>
                 <button onclick="closeDeleteModal()">No</button>
             </div>
         </div>
@@ -56,24 +54,21 @@
 
 
     <script>
-        function actualization(cartItems) {
-            // const cartItems = JSON.stringify(cartItems);
+        function actualization(products) {
             let total = 0;
             const tbody = document.querySelector('tbody');
             tbody.innerHTML = '';
 
-            for (const item of cartItems) {
-                const discountPrice = item.price - ((item.price * item.discount) / 100);
-                const amount = discountPrice * item.quantity;
-                total += amount;
+            for (let product of products) {
+                totalPrice = product.price * product.quantity;
 
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${item.name}</td>
-                    <td>$${discountPrice}</td>
-                    <td><input type="number" min="1" max="50" step="1" value="${item.quantity}" size="5" onchange="UpdateQuantity(${item.cart_id}, this.value)"></td>
-                    <td>${amount}</td>
-                    <td><a href="deleteProduct${item.cart_id}">Eliminar</a></td>
+                    <td>${product.name}</td>
+                    <td>$${product.price}</td>
+                    <td><input type="number" min="1" max="50" step="1" value="${product.quantity}" size="5" onchange="UpdateQuantity(${product.productID}, this.value)"></td>
+                    <td>${product.price}</td>
+                    <td><a href="deleteProduct${product.productID}">Eliminar</a></td>
                 `;
 
                 tbody.appendChild(row);
@@ -84,11 +79,12 @@
         }
 
         function UpdateQuantity(inputElement) {
-            const cartId = inputElement.getAttribute('data-cart-id');
+            const productID = inputElement.getAttribute('data-cart-product');
             const newQuantity = inputElement.value;
+            console.log(productID, newQuantity);
 
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', `/updateQuantity/${cartId}`, true);
+            xhr.open('POST', `/carrito/actualizarCantidad/${productID}`, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -118,10 +114,10 @@
             modal.style.display = 'none';
         }
 
-        function deleteCartItem() {
-            const cartId = window.cartIdToDelete;
+        function deleteCartItem(productID) {
+            // const cartId = window.cartIdToDelete;
             const xhr = new XMLHttpRequest();
-            xhr.open('DELETE', `/deleteProduct/${cartId}`, true);
+            xhr.open('DELETE', `/carrito/eliminar/${productID}`, true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {

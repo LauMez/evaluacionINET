@@ -11,7 +11,6 @@ export class AuthController {
         const response = await axios.get('http://localhost:1234/producto/todos');
         const products = response.data;
 
-        console.log(products);
         return res.render('index', {
             login: req.session.loggedin || false,
             products

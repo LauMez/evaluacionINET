@@ -16,17 +16,17 @@
         <div class="details-container">
             <div class="details-card">
                 <a href="/" class="volver"><i class="bi-arrow-left"></i></a>
-                    <form action="" method="post">
-                    <p class="details-type details-name" name="name">Nombre del producto: <%=product.name%></p>  
-                    <p class="details-type details-price">Precio del producto: $<%=product.price%></p>
+                    <form action="/carrito/agregar/<%= product.productID %>/detalles" method="post">
+                        <p class="details-type details-name" name="name">Nombre del producto: <%=product.name%></p>  
+                        <p class="details-type details-price">Precio del producto: $<%=product.price%></p>
 
-                    <p class="details-type details-desc">Descripción: <%=product.description%></p>
-                    <p class="details-type details-amount">Digitar cantidad a comprar: <input type="number" name="quantity"></p>
-                    <div class="details-btns">
-                        <a href=""><button class="details-btn">Comprar ahora</button></a>
-                        <a href="/addToCart"><button class="details-btn">Agregar al carrito</button></a>
-                    </div>
+                        <p class="details-type details-desc">Descripción: <%=product.description%></p>
+                        <p class="details-type details-amount">Digitar cantidad a comprar: <input type="number" name="quantity"></p>
+                        <div class="details-btns">
+                            <input type="submit" class="login__btn-btn" value="Agregar al carrito">
+                        </div>
                     </form>
+                <a href="/carrito/comprar/<%= product.productID %>"><button class="details-btn">Comprar ahora</button></a>
             </div>
         </div>
     </div>

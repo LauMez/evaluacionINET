@@ -8,11 +8,13 @@ export const createCartRouter = ({ cartModel }) => {
 
   cartRouter.get('/', cartController.getCart);
 
-  cartRouter.post('/comprar/:productID', cartController.buyProduct);
+  cartRouter.get('/comprar/:productID', cartController.buyProduct);
 
   cartRouter.post('/agregar', cartController.addProduct);
 
   cartRouter.post('/agregar/:productID/detalles', cartController.addProductInDetails);
+
+  cartRouter.post('/actualizarCantidad/:productID', cartController.updateQuantity);
 
   cartRouter.delete('/eliminar/:productID', cartController.deleteProduct);
 
